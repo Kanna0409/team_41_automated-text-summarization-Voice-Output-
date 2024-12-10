@@ -16,3 +16,7 @@ Encoder:
   rest everything in decoder is almost similar to encoder except the multihead cross attention which was explained in point 6.
   And the process down to this was about creation of word embeddings from conversion of tensor_tokenized_inputs,tensor_tokenized_outputs to one-hot-vectors to word embeddings and adding them with positional embeddings(Built using sin and cos)  according to batch size 2 such that the parameters will be updated after processing a batch according to by backpropogating from the loss.
 Building the transformer model by syncronizing encoder and decoder layers,computing loss,backpropogation,updating parameters will be dne by next submission.
+
+
+
+hello doggy
