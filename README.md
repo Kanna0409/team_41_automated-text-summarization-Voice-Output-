@@ -28,9 +28,9 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
      - Adds start and end tokens.
      - Pads the sequences to maintain consistent lengths.
    - Maximum token lengths:
-     - Dialogue: 573 tokens.
-     - Summary: 129 tokens.
-
+     - Dialogue: 450 tokens. (for the dataset of dialogue summarization).
+     - Summary: 450 tokens. (for the dataset of dialogue summarization).
+       
 4. **Padding and Masks**:
    - Padding ensures constant input sizes for the encoder and decoder.
    - Padding masks:
@@ -42,9 +42,9 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
 5. **Tensor Creation**:
    - Input (`input_ids`) and output (`output_ids`) tensors were created for tokenized texts.
    - All batches were concatenated into large tensors:
-     - `tensor_tokenized_inputs` (size = 12085573).
-     - `tensor_tokenized_outputs` (size = 12085150).
-
+     - `tensor_tokenized_inputs`.
+     - `tensor_tokenized_outputs`.
+   These outputs contain the tokens tensors for each dialogue or artile (tensor_tokenized_inputs) and for each summary (tensor_tokenized_outputs).
 ---
 
 ## **Transformer Architecture**
@@ -122,4 +122,3 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
 - Fine-tuning to improve summary coherence and fluency.
 
 This project showcases the power of Transformers in natural language understanding and generation, providing an accessible solution for summarizing speech-based texts.
-Hi
