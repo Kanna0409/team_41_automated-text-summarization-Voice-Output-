@@ -7,7 +7,7 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
 1. Work on the output of the preceding layers.
 2. Use **self-attention** and **cross-attention** mechanisms to process the data.
 
----
+
 
 ## **Workflow Summary**
 
@@ -17,8 +17,8 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
    - Text length analysis:
      - 97% of dialogue texts have a length ≤ 1584.(for dialogue summarization dataset in small.ipynb)
      - 97% of summary texts have a length ≤ 283. (for dialogue summarization dataset in small.ipynb)
-     - 97% of article texts have a length ≤ 8560.(for CNN news summarization dataset in small.ipynb)
-     - 97% of summary texts have a length ≤ 558.(for CNN news summarization dataset in small.ipynb)
+     - 97% of article texts have a length ≤ 8560.(for CNN news summarization dataset in codebig.ipynb)
+     - 97% of summary texts have a length ≤ 558.(for CNN news summarization dataset in codebig.ipynb)
    - Only texts meeting these length criteria were processed further.
    - A new dataset was created with dialogue texts and their corresponding summaries.
 
@@ -32,8 +32,8 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
    - Maximum token lengths:
      - Dialogue: 450 tokens. (for the dataset of dialogue summarization in small.ipynb).
      - Summary: 450 tokens. (for the dataset of dialogue summarization in small.ipynb).
-     - Dialogue: 450 tokens. (for the dataset of dialogue summarization in small.ipynb).
-       
+     - Article: 1800 tokens. (for the dataset of CNN news summarization in codebig.ipynb).
+     - Summary: 1800 tokens. (for the dataset of CNN news summarization in codebig.ipynb).
 4. **Padding and Masks**:
    - Padding ensures constant input sizes for the encoder and decoder.
    - Padding masks:
@@ -48,21 +48,18 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
      - `tensor_tokenized_inputs`.
      - `tensor_tokenized_outputs`.
    These outputs contain the tokens tensors for each dialogue or artile (tensor_tokenized_inputs) and for each summary (tensor_tokenized_outputs).
----
+
 
 ## **Transformer Architecture**
 
 ### **Encoder**
 1. **Multi-Head Attention**:
-   - Calculates self-attention using the formula:  
-     \[
-     \text{Attention}(Q, K, V) = \text{softmax} \left( \frac{QK^T}{\sqrt{d_k}} \right) V
-     \]
+   - Calculates self-attention the fourmula is given in the code in the class of Multiheadattention, Maskedattention,Multiheadcrossattention.
    - `Q`, `K`, and `V` matrices are derived from input embeddings.
    - Outputs from all heads are concatenated and passed through a linear layer.
 
 2. **Dropout and Residual Connections**:
-   - Drops some neurons (probability = 0.1) for regularization.
+   - Drops some neurons (probability = 0.1) for the generalization of the model.
    - Residual connections add the original input to the output of the attention layer to address vanishing gradients.
 
 3. **Layer Normalization**:
@@ -76,7 +73,7 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
    - Multiple encoder layers are stacked.
    - The output of the last encoder layer is sent to the decoder.
 
----
+
 
 ### **Decoder**
 1. **Masked Self-Attention**:
@@ -87,37 +84,37 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
    - Combines the decoder’s queries with the encoder’s outputs to refine predictions.
 
 3. **Layer Configuration**:
-   - Similar to the encoder, with additional cross-attention layers.
+   - Similar to the encoder for the dropout and residual connections,layer normalization,feedfoward layers and layer stacking.
 
----
+
 
 ## **Embedding and Positional Encoding**
 - Texts are converted into **word embeddings** (dense vector representations).
 - Positional encodings (using sine and cosine functions) are added to embeddings to retain word order.
 
----
+
 
 ## **Training**
 1. **Loss Function**:
    - Cross-entropy loss is used to compute the difference between predicted and actual summaries.
 
 2. **Backpropagation**:
-   - Loss gradients are propagated back to update model parameters.
+   - Loss gradients are propagated back to update model parameters,positional encoding layers, embedding_matrix_inputs and embedding_matrix_outputs using adam optimizer with a leanring rate of 0.001.
 
 3. **Batch Processing**:
-   - Training occurs in batches of size 2, with parameters updated after each batch.
+   - Training occurs in batches of size 1, with parameters updated after each batch.
 
----
+
 
 ## **Model Results**
 - **Encoder-Decoder Synchronization**:
    - Multi-layered architecture ensures efficient processing of long texts and accurate summary generation.
 - **Loss Convergence**:
    - The loss reduced significantly during training, demonstrating successful learning.
-   - Final Loss for model trained with smaller dataset = 0.0031
-   - Final loss for model trained with Larger dataset = 0.0029
+   - Final Loss for model trained with smaller dataset(Dialogue summarization)(small.ipynb) = 0.0031
+   - Final loss for model trained with Larger dataset(CNN news summarization)(codebig.ipynb) = 0.0029
 
----
+
 
 ## **Future Enhancements**
 - Real-time text-to-speech integration.
