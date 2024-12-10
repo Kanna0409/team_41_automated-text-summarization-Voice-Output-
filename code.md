@@ -209,12 +209,3 @@ tts = gTTS(text="Generated summary here.", lang='en')
 tts.save("output.mp3")
 ```
 - Converts generated summaries into speech using Google TTS.
-
----
-
-## **Conclusion**
-This project demonstrates the implementation of a Transformer-based text summarization model, making text accessible to visually impaired individuals via text-to-speech integration.
-
---- 
-
-Let me know if specific sections need further explanation!
