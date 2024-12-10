@@ -15,8 +15,10 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
    - **Input Format**: A `.csv` file containing columns `id`, `dialogues`, `summaries`, and `topics`.
    - Columns `id` and `topics` were excluded during preprocessing.
    - Text length analysis:
-     - 97% of dialogue texts have a length ≤ 1584.
-     - 97% of summary texts have a length ≤ 283.
+     - 97% of dialogue texts have a length ≤ 1584.(for dialogue summarization dataset in small.ipynb)
+     - 97% of summary texts have a length ≤ 283. (for dialogue summarization dataset in small.ipynb)
+     - 97% of article texts have a length ≤ 8560.(for CNN news summarization dataset in small.ipynb)
+     - 97% of summary texts have a length ≤ 558.(for CNN news summarization dataset in small.ipynb)
    - Only texts meeting these length criteria were processed further.
    - A new dataset was created with dialogue texts and their corresponding summaries.
 
@@ -28,8 +30,9 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
      - Adds start and end tokens.
      - Pads the sequences to maintain consistent lengths.
    - Maximum token lengths:
-     - Dialogue: 450 tokens. (for the dataset of dialogue summarization).
-     - Summary: 450 tokens. (for the dataset of dialogue summarization).
+     - Dialogue: 450 tokens. (for the dataset of dialogue summarization in small.ipynb).
+     - Summary: 450 tokens. (for the dataset of dialogue summarization in small.ipynb).
+     - Dialogue: 450 tokens. (for the dataset of dialogue summarization in small.ipynb).
        
 4. **Padding and Masks**:
    - Padding ensures constant input sizes for the encoder and decoder.
