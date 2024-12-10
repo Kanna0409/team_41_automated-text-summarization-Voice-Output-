@@ -1,7 +1,7 @@
 # Final Project Report
 
 ## Abstract and Introduction
-This notebook implements a pipeline for natural language processing (NLP) and data analysis using popular Python libraries such as `numpy`, `pandas`, `torch`, and `spacy`. The primary goal is to preprocess textual data, utilize GPU acceleration where available, and prepare the dataset for further machine learning tasks. This work demonstrates essential steps for text preprocessing and sets the stage for advanced NLP or ML tasks.
+This notebook implements a pipeline for natural language processing (NLP) and data analysis using popular Python libraries such as `numpy`, `pandas`, `torch`, and `spacy`. The primary goal is to preprocess textual data, utilize GPU acceleration where available, and prepare datasets for text summarization tasks. Two datasets are employed to evaluate the pipeline's performance on different scales, demonstrating its effectiveness in handling both small and large datasets.
 
 ---
 
@@ -11,14 +11,20 @@ This project leverages well-established libraries and methodologies:
 - **PyTorch**: Integrated for potential GPU-accelerated machine learning workflows.
 - **Pandas**: Utilized for efficient data manipulation and preprocessing.
 
-The integration of these tools reflects current best practices in NLP and data science.
+The use of these tools aligns with best practices in natural language processing and machine learning.
 
 ---
 
 ## Dataset
-- **Source**: The dataset is loaded from a CSV file located at `/dgxa_home/se22uari173/train.csv`.
-- **Operation**: The data is read using Pandas (`pd.read_csv`) and stored as a DataFrame in the variable `df`.
-- **Assumptions**: The dataset likely contains textual data for preprocessing. A deeper exploration is necessary to fully understand its structure and content.
+Two datasets were used to train and evaluate the summarization model:
+1. **DialogSum Dataset**:
+   - **Source**: [DialogSum on Kaggle](https://www.kaggle.com/datasets/marawanxmamdouh/dialogsum)
+   - **Description**: Contains human-written summaries of dialogues for text summarization tasks.
+2. **CNN/Daily Mail Text Summarization Dataset**:
+   - **Source**: [CNN/Daily Mail on Kaggle](https://www.kaggle.com/datasets/gowrishankarp/newspaper-text-summarization-cnn-dailymail)
+   - **Description**: Includes news articles and their summaries for summarization tasks.
+
+The datasets vary in size, allowing for evaluation of the pipeline's performance on small and large datasets.
 
 ---
 
@@ -29,31 +35,55 @@ The integration of these tools reflects current best practices in NLP and data s
      - Utilizes SpaCy to parse input text.
      - Removes punctuation and whitespace.
      - Joins cleaned tokens into a single string.
-   - **Purpose**: Ensures text is clean and prepared for NLP tasks such as embedding generation or sentiment analysis.
+   - **Purpose**: Ensures text is clean and prepared for summarization tasks.
 2. **Device Configuration**:
    - Detects GPU availability using PyTorch.
    - Defaults to CPU for computations if GPU is unavailable.
+3. **Model**:
+   - A text summarization model was trained separately on the small and large datasets.
+   - The training process minimized the loss function to optimize the summaries generated.
 
 ---
 
 ## Experiments
 - **Preprocessing Validation**:
-  - Text data from the dataset is processed through the `preprocess_text` function to verify proper tokenization and cleaning.
+  - Text data from both datasets was processed through the `preprocess_text` function to verify proper tokenization and cleaning.
 - **Device Verification**:
   - Confirms the runtime environment (CUDA or CPU) to ensure hardware optimization.
+- **Model Training**:
+  - Separate models were trained using the smaller and larger datasets to compare results.
 
 ---
 
 ## Results
-- **Processed Text**: Cleaned and tokenized text ready for further NLP tasks.
-- **Device Status**: Confirms whether the computations will run on GPU or CPU, ensuring optimal performance based on the system's hardware.
+### Smaller Dataset Output:
+**Summary**:  
+*Person1 invites Anna to come to a get together. Anna agrees after she knows Jack won't come because they are on bad terms.*  
+This output can be found in **`Small.ipynb`** cell number **73**.
+
+### Larger Dataset Output:
+**Summary**:  
+*Phillipe Mexes dismissed for grabbing the throat of Stefano Mauri. AC Milan defender also appeared to clutch the neck of Lazio player Lorik Cana. Lazio beat AC Milan 3–1 at the Stadio Olimpico on Saturday in Serie A.*  
+This output can be found in **`codebig.ipynb`** cell number **190**.
+
+### Final Loss:
+- **Model trained on smaller dataset**: `0.0031`
+- **Model trained on larger dataset**: `0.0029`
 
 ---
 
 ## Analysis & Conclusion
-This notebook provides a robust foundation for building a text-processing pipeline. It integrates efficient libraries for data manipulation and preprocessing, adhering to industry standards. Key improvements for future iterations include:
-1. Expanding functionality with advanced NLP techniques, such as lemmatization and named entity recognition.
-2. Performing exploratory data analysis (EDA) to gain better insights into the dataset.
-3. Implementing downstream tasks like classification, clustering, or embedding generation.
+The pipeline successfully handled both small and large datasets, showcasing its flexibility and robustness. Key findings include:
+1. **Smaller Dataset Performance**:
+   - Generated concise summaries with good context but limited diversity due to smaller data size.
+   - Final loss: `0.0031`
+2. **Larger Dataset Performance**:
+   - Produced more detailed summaries and improved overall performance.
+   - Final loss: `0.0029`
 
-Overall, this pipeline is a solid starting point for deploying machine learning models in NLP applications.
+### Improvements for Future Work:
+1. Enhance preprocessing with advanced NLP techniques like lemmatization and stop-word removal.
+2. Perform exploratory data analysis (EDA) for deeper insights into dataset structure.
+3. Extend experiments to include more datasets and compare models trained on different architectures.
+
+This pipeline provides a strong foundation for text summarization tasks, effectively balancing performance and scalability.
