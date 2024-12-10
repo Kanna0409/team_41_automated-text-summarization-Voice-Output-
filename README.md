@@ -19,4 +19,3 @@ Building the transformer model by syncronizing encoder and decoder layers,comput
 
 
 
-hello doggy
