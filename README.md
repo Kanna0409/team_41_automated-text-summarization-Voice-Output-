@@ -111,6 +111,8 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
    - Multi-layered architecture ensures efficient processing of long texts and accurate summary generation.
 - **Loss Convergence**:
    - The loss reduced significantly during training, demonstrating successful learning.
+   - Final Loss for model trained with smaller dataset = 0.0031
+   - Final loss for model trained with Larger dataset = 0.0029
 
 ---
 
