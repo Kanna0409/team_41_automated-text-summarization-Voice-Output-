@@ -111,7 +111,7 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
    - Multi-layered architecture ensures efficient processing of long texts and accurate summary generation.
 - **Loss Convergence**:
    - The loss reduced significantly during training, demonstrating successful learning.
-   - Final Loss for model trained with smaller dataset(Dialogue summarization)(small.ipynb) = 0.0031
+   - Final Loss for model trained with smaller dataset(Dialogue summarization)(Small.ipynb) = 0.0031
    - Final loss for model trained with Larger dataset(CNN news summarization)(codebig.ipynb) = 0.0029
 
 
