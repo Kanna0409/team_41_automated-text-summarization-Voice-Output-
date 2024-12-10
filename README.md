@@ -122,3 +122,4 @@ The summarizer is based on a **Transformer architecture** consisting of custom m
 - Fine-tuning to improve summary coherence and fluency.
 
 This project showcases the power of Transformers in natural language understanding and generation, providing an accessible solution for summarizing speech-based texts.
+Hi
