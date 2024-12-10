@@ -1,7 +1,7 @@
 # **team_41_automated-text-summarization**
 
 ## **Project Overview**
-The goal of this project is to build an **automated text summarizer** that processes input texts and generates corresponding summaries in human speech voice. After deploying the model, it processes text from speech and creates concise summaries.
+The goal of this project is to build an **automated text summarizer** that processes input texts and generates corresponding summaries in human speech voice. 
 
 The summarizer is based on a **Transformer architecture** consisting of custom multi-layered encoders and decoders. These components:
 1. Work on the output of the preceding layers.
