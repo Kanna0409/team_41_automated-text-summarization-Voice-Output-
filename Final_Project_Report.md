@@ -53,8 +53,6 @@ The datasets vary in size, allowing for evaluation of the pipeline's performance
 - **Model Training**:
   - Two same custom model(Transformer) were trained seperately using the smaller and larger datasets to compare results specifically losses.
 
-
-
 ## Results
 ### Smaller Dataset Output:
 **Summary**:  
